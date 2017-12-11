@@ -1,0 +1,42 @@
+{
+  "_args": [
+    [
+      "@bsj/angular-inline-resources@1.0.0",
+      "E:\\Dev\\www\\NPM\\angular-datetimepicker"
+    ]
+  ],
+  "author": {
+    "name": "“Bruno João”",
+    "email": "bruno@tzadi.com",
+    "url": "https://br.linkedin.com/in/brunojoao"
+  },
+  "dependencies": {
+    "node-sass": "^4.5.0"
+  },
+  "description": "Used to inline css and html resources in Angular Components",
+  "keywords": [
+    "Angular",
+    "Angular package",
+    "Angular NPM",
+    "Angular Inline Resources",
+    "Inline Resources"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "name": "@bsj/angular-inline-resources",
+  "peerDependencies": {
+    "node-sass": "^4.5.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "4.0.4",
+  "homepage": "https://github.com/vinagreti/angular-inline-resources",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vinagreti/angular-inline-resources.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vinagreti/angular-inline-resources/issues"
+  }
+}
