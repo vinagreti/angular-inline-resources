@@ -45,6 +45,14 @@ function rmDir(dirPath) {
   fs.rmdirSync(dirPath);
 };
 
+function mkdirSync(dirPath) {
+  try {
+    fs.mkdirSync(dirPath)
+  } catch (err) {
+    if (err.code !== 'EEXIST') throw err
+  }
+}
+
 function inlineResources(globs) {
   if (typeof globs == 'string') {
     globs = [globs];
@@ -53,33 +61,41 @@ function inlineResources(globs) {
   /**
    * For every argument, inline the templates and styles under it and write the new file.
    */
-  return Promise.all(globs.map(pattern => {
-    if (pattern.indexOf('*') < 0) {
-      // Argument is a directory target, add glob patterns to include every files.
-      pattern = path.join(pattern, '**', '*');
-    }
+  return Promise.all(
+    globs.map(pattern => {
+      if (pattern.indexOf('*') < 0) {
+        // Argument is a directory target, add glob patterns to include every files.
+        pattern = path.join(pattern, '**', '*');
+      }
 
-    const files = glob.sync(pattern, {})
-      .filter(name => /\.ts$/.test(name) || /\.js$/.test(name));  // Matches only JavaScript files.
+      const pathPattern = pattern.replace('/**', '').replace('/*', '');
 
-    rmDir(outputDir+'');
-    fs.mkdir(outputDir);
+      const files = glob.sync(pattern, {})
+        .filter(name => /\.ts$/.test(name) || /\.js$/.test(name));  // Matches only JavaScript files.
 
-    // Generate all files content with inlined templates.
-    return Promise.all(files.map(filePath => {
-      return readFile(filePath, 'utf-8')
-        .then(content => inlineResourcesFromString(content, url => {
-          return path.join(path.dirname(filePath), url);
-        }))
-        .then(content => {
-          var inlinePath = outputDir +  '/' + filePath.replace(/^.*[\\\/]/, '')
-          writeFile(inlinePath, content);
-        })
-        .catch(err => {
-          console.error('An error occurred: ', err);
-        });
-    }));
-  }));
+      rmDir(outputDir+'');
+      fs.mkdir(outputDir);
+
+      // Generate all files content with inlined templates.
+      return Promise.all(files.map(filePath => {
+        return readFile(filePath, 'utf-8')
+          .then(content => inlineResourcesFromString(content, url => {
+            return path.join(path.dirname(filePath), url);
+          }))
+          .then(content => {
+            const filename = filePath.replace(/^.*[\\\/]/, '');
+            const inlineDir = (outputDir + filePath.replace(filename, '')).replace(pathPattern, '')
+            const inlinePath = outputDir +  '/' + filePath.replace(pathPattern, '')
+            console.log('--------------------------------------------', inlineDir)
+            mkdirSync(inlineDir);
+            writeFile(inlinePath, content);
+          })
+          .catch(err => {
+            console.error('An error occurred: ', err);
+          });
+      }));
+    })
+  );
 }
 
 /**

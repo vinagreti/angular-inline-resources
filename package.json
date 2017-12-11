@@ -1,10 +1,4 @@
 {
-  "_args": [
-    [
-      "@bsj/angular-inline-resources@1.0.1",
-      "E:\\Dev\\www\\NPM\\angular-datetimepicker"
-    ]
-  ],
   "author": {
     "name": "“Bruno João”",
     "email": "bruno@tzadi.com",
@@ -30,7 +24,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "1.0.1",
+  "version": "1.0.2",
   "homepage": "https://github.com/vinagreti/angular-inline-resources",
   "repository": {
     "type": "git",
