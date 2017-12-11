@@ -6,7 +6,7 @@ This package is used to inline CSS and HTML in Angular components so they can be
 
 ### Install Angular Inline Resources
 
-`npm i @tzadi/angular-inline-resources`
+`npm i @bsj/angular-inline-resources`
 
 
 ### Install Gulp
@@ -20,7 +20,7 @@ The Gulp file should call the inline-resource script passing the folders where t
 
 ```typescript
 var gulp = require('gulp');
-var inlineResources = require('@neoprospecta/angular-inline-resources');
+var inlineResources = require('@bsj/angular-inline-resources');
 
 /** Inlines resources (html, css) into the JS output (for either ESM or CJS output). */
 gulp.task('js:inline-resources', () => inlineResources('./src/*'));

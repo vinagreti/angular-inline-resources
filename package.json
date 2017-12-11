@@ -1,7 +1,7 @@
 {
   "_args": [
     [
-      "@bsj/angular-inline-resources@1.0.0",
+      "@bsj/angular-inline-resources@1.0.1",
       "E:\\Dev\\www\\NPM\\angular-datetimepicker"
     ]
   ],
@@ -30,7 +30,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/vinagreti/angular-inline-resources",
   "repository": {
     "type": "git",
